@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Waypoint 1</title>
+<link rel="stylesheet" href="/css/quest.css">
+<style>
+.game-area{position:relative;background:rgba(5,0,12,.95);border:1px solid rgba(150,0,50,.5);border-radius:6px;height:240px;overflow:hidden;margin:10px 0;touch-action:none}
+.w-egg{position:absolute;font-size:32px;cursor:pointer;filter:drop-shadow(0 0 10px rgba(120,200,255,.7));touch-action:manipulation}
+.w-egg:active{transform:scale(.8)}
+.horror{position:absolute;font-size:28px;pointer-events:none;filter:drop-shadow(0 0 6px rgba(255,0,80,.5));transition:left .4s linear,top .4s linear}
+.score-big{font-family:'Orbitron',sans-serif;font-size:2rem;color:var(--teal);text-align:center;margin:8px 0}
+.warn{position:absolute;top:8px;left:0;right:0;text-align:center;font-family:'Orbitron',sans-serif;font-size:9px;color:rgba(255,50,80,.8);letter-spacing:2px;animation:pulse 1s ease-in-out infinite;display:none}
+</style>
+</head>
+<body>
+<div class="nebula-bg" style="background:radial-gradient(ellipse at 50% 60%,rgba(80,0,30,.2) 0%,transparent 50%)"></div>
+<div class="quest-container">
+  <div class="hud">
+    <div class="hud-logo">NO MAN'S SKY</div>
+    <div class="hud-step">1 / 10</div>
+    <div class="hud-name">ELLIS</div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" style="width:10%"></div></div>
+
+  <div class="scene-art"><svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+    <defs><radialGradient id="bg1" cx="50%" cy="60%"><stop offset="0%" stop-color="#12010a"/><stop offset="100%" stop-color="#040108"/></radialGradient><filter id="g1"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+    <rect width="400" height="200" fill="url(#bg1)"/>
+    <rect x="0" y="155" width="400" height="45" fill="rgba(15,5,10,.9)"/>
+    <rect x="80" y="70" width="240" height="90" rx="2" fill="rgba(8,3,6,.9)" stroke="rgba(100,30,50,.3)" stroke-width="1"/>
+    <rect x="95" y="83" width="30" height="24" rx="1" fill="rgba(30,10,20,.8)"/>
+    <rect x="175" y="83" width="25" height="24" rx="1" fill="rgba(30,10,20,.8)"/>
+    <rect x="270" y="83" width="30" height="24" rx="1" fill="rgba(30,10,20,.8)"/>
+    <ellipse cx="130" cy="162" rx="10" ry="13" fill="rgba(150,200,255,.3)" stroke="rgba(150,200,255,.6)" stroke-width="1" filter="url(#g1)"/>
+    <ellipse cx="200" cy="160" rx="9"  ry="11" fill="rgba(150,200,255,.25)" stroke="rgba(150,200,255,.5)" stroke-width="1" filter="url(#g1)"/>
+    <ellipse cx="265" cy="162" rx="10" ry="13" fill="rgba(150,200,255,.3)" stroke="rgba(150,200,255,.6)" stroke-width="1" filter="url(#g1)"/>
+    <path d="M200,155 Q205,145 200,138 Q195,145 200,155" fill="none" stroke="rgba(255,30,80,.4)" stroke-width="1.5"/>
+    <circle cx="30"  cy="20" r="1"   fill="white" opacity=".7"/>
+    <circle cx="365" cy="15" r="1.2" fill="#ffd090" opacity=".5"/>
+    <circle cx="340" cy="50" r="18"  fill="rgba(120,30,40,.6)" stroke="rgba(180,50,60,.3)" stroke-width=".5"/>
+    <text x="200" y="22" text-anchor="middle" font-size="8" fill="rgba(150,200,255,.4)" font-family="monospace" letter-spacing="2">ABANDONED BUILDING · WHISPERING EGG SITE</text>
+  </svg></div>
+
+  <div class="panel">
+    <div class="stamp">◈ WAYPOINT 1 — WHISPERING EGG SITE ◈</div>
+    <div class="title">Harvest the Eggs!</div>
+    <p class="body">Tap the glowing eggs before the <strong>Biological Horrors</strong> steal them. Get <strong>5 Larval Cores</strong>!</p>
+  </div>
+
+  <div class="activity" id="puzzle-section">
+    <div class="act-label">◈ TAP THE EGGS ◈</div>
+    <div class="score-big">🟢 <span id="core-count">0</span> / 5</div>
+    <div class="game-area" id="game-area">
+      <div class="warn" id="hw">⚠ BIOLOGICAL HORRORS! ⚠</div>
+      <div id="game-start" style="text-align:center;padding:30px 0">
+        <div style="font-size:48px;margin-bottom:16px;filter:drop-shadow(0 0 14px rgba(150,200,255,.7))">🥚</div>
+        <button class="btn" onclick="startGame()" style="margin:0 auto;max-width:260px">◈ BEGIN HARVEST ◈</button>
+      </div>
+    </div>
+    <div id="answer-feedback" class="feedback"></div>
+  </div>
+
+  <div id="riddle-section" class="riddle hidden">
+    <div class="riddle-label">◈ NEXT COORDINATES ◈</div>
+    <div class="riddle-text">
+      I sit flat and hold things still,<br>
+      where snacks are eaten at your will.<br>
+      Find me in the bright-screen room —<br>
+      your Refiner waits there in the gloom.
+    </div>
+  </div>
+  <div id="collect-section" class="collect-notice hidden">
+    <div class="coll-icon">🥚</div>
+    <div class="coll-text"><strong>FIND YOUR REWARD!</strong>Look for hidden eggs near the fridge!</div>
+  </div>
+  <div class="glyphs">◈ ◈ ◈</div>
+</div>
+<script src="/js/quest.js"></script>
+<script>
+let cores=0,running=false,horrors=[],eggs=[],hInt,mInt,lastFed=0;
+function startGame(){
+  document.getElementById('game-start').innerHTML='';
+  running=true;
+  document.getElementById('hw').style.display='block';
+  spawnEgg();
+  hInt=setInterval(spawnHorror,1900);
+  mInt=setInterval(moveHorrors,300);
+}
+function spawnEgg(){
+  if(!running)return;
+  const a=document.getElementById('game-area');
+  const e=document.createElement('div');
+  e.className='w-egg';e.textContent='🥚';
+  e.style.left=(8+Math.random()*72)+'%';
+  e.style.top=(10+Math.random()*65)+'%';
+  e.addEventListener('click',()=>collectEgg(e));
+  e.addEventListener('touchstart',ev=>{ev.preventDefault();collectEgg(e);},{passive:false});
+  a.appendChild(e);eggs.push(e);
+  setTimeout(()=>{if(e.parentNode&&running){e.remove();eggs=eggs.filter(x=>x!==e);if(running)setTimeout(spawnEgg,400);}},4200);
+}
+function collectEgg(e){
+  if(!running)return;
+  cores++;document.getElementById('core-count').textContent=cores;
+  e.remove();eggs=eggs.filter(x=>x!==e);
+  if(cores<5)setTimeout(spawnEgg,500);else endGame();
+}
+function spawnHorror(){
+  if(!running)return;
+  const a=document.getElementById('game-area');
+  const h=document.createElement('div');h.className='horror';h.textContent='👾';
+  const s=Math.floor(Math.random()*4);
+  if(s===0){h.style.left='0%';h.style.top=(Math.random()*80)+'%';}
+  else if(s===1){h.style.left='88%';h.style.top=(Math.random()*80)+'%';}
+  else if(s===2){h.style.left=(Math.random()*88)+'%';h.style.top='0%';}
+  else{h.style.left=(Math.random()*88)+'%';h.style.top='80%';}
+  a.appendChild(h);horrors.push(h);
+  setTimeout(()=>{h.remove();horrors=horrors.filter(x=>x!==h);},5000);
+}
+function moveHorrors(){
+  horrors.forEach(h=>{
+    const hx=parseFloat(h.style.left),hy=parseFloat(h.style.top);
+    if(eggs.length>0){
+      const t=eggs[0];
+      const tx=parseFloat(t.style.left),ty=parseFloat(t.style.top);
+      const dx=tx-hx,dy=ty-hy,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<6&&running){t.remove();eggs=eggs.filter(e=>e!==t);if(running)setTimeout(spawnEgg,700);}
+      else{h.style.left=(hx+dx/d*2.8)+'%';h.style.top=(hy+dy/d*2.8)+'%';}
+    } else {
+      h.style.left=Math.max(0,Math.min(88,hx+(Math.random()-.5)*5))+'%';
+      h.style.top=Math.max(0,Math.min(82,hy+(Math.random()-.5)*5))+'%';
+    }
+  });
+}
+function endGame(){
+  running=false;clearInterval(hInt);clearInterval(mInt);
+  horrors.forEach(h=>h.remove());eggs.forEach(e=>e.remove());
+  document.getElementById('hw').style.display='none';
+  const fb=document.getElementById('answer-feedback');
+  fb.className='feedback ok';fb.textContent='✦ 5 LARVAL CORES SECURED ✦';
+  setTimeout(()=>revealRiddle(1),800);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>NMS Easter Quest</title>
+<link rel="stylesheet" href="/css/quest.css">
+<style>
+.hero{width:100%;height:270px;background:linear-gradient(180deg,#020811 0%,#050e22 40%,#031520 70%,#020c18 100%);position:relative;overflow:hidden}
+.atlas-orb{position:absolute;top:24px;left:50%;transform:translateX(-50%);width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 38% 32%,rgba(255,215,0,.95),rgba(255,107,53,.75) 45%,rgba(70,0,170,.9));box-shadow:0 0 50px rgba(255,215,0,.5),0 0 100px rgba(255,107,53,.2);animation:aP 3s ease-in-out infinite}
+@keyframes aP{0%,100%{box-shadow:0 0 50px rgba(255,215,0,.5),0 0 100px rgba(255,107,53,.2)}50%{box-shadow:0 0 80px rgba(255,215,0,.85),0 0 140px rgba(255,107,53,.4)}}
+.ship{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-size:52px;filter:drop-shadow(0 0 18px rgba(0,212,200,.8));animation:hover 3s ease-in-out infinite}
+@keyframes hover{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-7px)}}
+.egg-float{position:absolute;font-size:22px;animation:floatEgg 4s ease-in-out infinite}
+@keyframes floatEgg{0%,100%{transform:translateY(0) rotate(-5deg);opacity:.7}50%{transform:translateY(-10px) rotate(5deg);opacity:1}}
+</style>
+</head>
+<body>
+<div class="nebula-bg"></div>
+<div class="quest-container">
+  <div class="hud">
+    <div class="hud-logo">NO MAN'S SKY</div>
+    <div class="hud-step">EASTER QUEST</div>
+    <div class="hud-name">TRAVELLER: ELLIS</div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
+
+  <div class="hero">
+    <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 400 270">
+      <!-- stars -->
+      <circle cx="30"  cy="18" r="1.5" fill="white" opacity=".9"/>
+      <circle cx="78"  cy="40" r="1"   fill="#ffd090" opacity=".7"/>
+      <circle cx="130" cy="12" r="1.5" fill="white" opacity=".8"/>
+      <circle cx="200" cy="38" r="1"   fill="#c0d8ff" opacity=".6"/>
+      <circle cx="265" cy="8"  r="1.5" fill="white" opacity=".9"/>
+      <circle cx="315" cy="30" r="1"   fill="#ffd090" opacity=".7"/>
+      <circle cx="368" cy="15" r="1.5" fill="white" opacity=".8"/>
+      <circle cx="385" cy="52" r="1"   fill="white" opacity=".6"/>
+      <circle cx="50"  cy="72" r="1"   fill="white" opacity=".5"/>
+      <circle cx="340" cy="65" r="1.2" fill="#c0d8ff" opacity=".7"/>
+      <!-- anomaly rings -->
+      <ellipse cx="200" cy="140" rx="115" ry="30" fill="none" stroke="rgba(0,212,200,.18)" stroke-width="1"/>
+      <ellipse cx="200" cy="140" rx="88"  ry="22" fill="none" stroke="rgba(0,212,200,.25)" stroke-width="1"/>
+      <ellipse cx="200" cy="140" rx="62"  ry="15" fill="none" stroke="rgba(255,107,53,.18)" stroke-width="1"/>
+      <!-- orbiting eggs (generic) -->
+      <text x="106" y="112" font-size="20" fill="rgba(255,215,0,.65)">🥚</text>
+      <text x="275" y="125" font-size="18" fill="rgba(0,212,200,.55)">🥚</text>
+      <text x="152" y="176" font-size="16" fill="rgba(123,47,190,.65)">🥚</text>
+      <text x="236" y="170" font-size="18" fill="rgba(255,107,53,.55)">🥚</text>
+      <!-- atlas glyph -->
+      <polygon points="200,90 220,130 200,122 180,130" fill="none" stroke="rgba(255,215,0,.75)" stroke-width="1.8"/>
+      <circle cx="200" cy="124" r="9" fill="rgba(255,215,0,.18)" stroke="rgba(255,215,0,.5)" stroke-width=".6"/>
+    </svg>
+    <div class="atlas-orb"></div>
+    <div class="egg-float" style="left:22%;top:38%">🥚</div>
+    <div class="egg-float" style="left:70%;top:44%;animation-delay:1.3s">🥚</div>
+    <div class="ship">🛸</div>
+  </div>
+
+  <div class="panel">
+    <div class="stamp">◈ ATLAS TRANSMISSION — PRIORITY OMEGA ◈</div>
+    <div class="title">THE EGG EXPEDITION</div>
+    <div class="lore">
+      "Traveller Ellis. Veteran of eighteen galaxies. The Atlas knows your name — and it has chosen you for the most important mission in the known universe."
+    </div>
+    <p class="body">
+      The Atlas has hidden eggs across this world. Not ordinary eggs — <strong>Whispering Eggs</strong>, <strong>Companion Eggs</strong>, cooking eggs, and Easter eggs. Your mission spans <strong>10 Waypoints</strong>. You will harvest, refine, engineer, hatch, and cook your way through the full egg pipeline.
+    </p>
+  </div>
+
+  <div class="panel">
+    <div class="stamp">◈ MISSION PHASES ◈</div>
+    <p class="body" style="line-height:2.1">
+      🥚 Hunt <strong>Whispering Eggs</strong>, dodge <strong>Biological Horrors</strong><br>
+      ⬡ Refine <strong>Larval Cores → Nanites</strong><br>
+      🛸 Dock at the <strong>Space Anomaly</strong>, meet Nada &amp; Polo<br>
+      🦕 Tame a creature, receive a <strong>Companion Egg</strong><br>
+      🧬 Use the <strong>Egg Sequencer</strong> — splice its genes<br>
+      🐾 Incubate and <strong>hatch your Companion</strong><br>
+      🍳 Cook three real egg recipes in your kitchen<br>
+      🌌 Face the <strong>Atlas Interface</strong> — claim your Certificate
+    </p>
+  </div>
+
+  <div class="riddle" style="margin-bottom:4px">
+    <div class="riddle-label">◈ ATLAS FIRST SIGNAL ◈</div>
+    <div class="riddle-text">
+      "I glow in the dark near forgotten places.<br>
+      Crack me open — horror faces!<br>
+      Look where food sleeps cold and bright —<br>
+      your first Whispering Egg glows in the light."
+    </div>
+  </div>
+
+  <div style="padding:8px 14px 16px;text-align:center">
+    <p style="font-family:'Orbitron',sans-serif;font-size:9px;color:rgba(0,212,200,.4);letter-spacing:3px">
+      SCAN THE QR CODE AT EACH WAYPOINT
+    </p>
+  </div>
+</div>
+<script src="/js/quest.js"></script>
+</body>
+</html>

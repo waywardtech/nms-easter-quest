@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Easter Quest — Clue Card</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+@page{size:A5 portrait;margin:6mm}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:148mm;min-height:210mm;background:#050A14;font-family:'Exo 2',sans-serif;color:#c8dde8;padding:0}
+.card{width:100%;min-height:100%;border:2px solid #FFD700;border-radius:5px;padding:13px 13px 16px;background:#050A14;position:relative}
+.card::before{content:'';position:absolute;inset:0;border-radius:4px;background:radial-gradient(1.5px 1.5px at 8% 10%,white 0%,transparent 100%),radial-gradient(1px 1px at 92% 7%,rgba(255,255,255,.6) 0%,transparent 100%),radial-gradient(1px 1px at 50% 4%,rgba(200,220,255,.7) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 20% 90%,white 0%,transparent 100%),radial-gradient(1px 1px at 78% 93%,rgba(255,255,255,.5) 0%,transparent 100%);pointer-events:none}
+.inner{position:absolute;inset:7px;border:1px solid rgba(255,215,0,.14);border-radius:3px;pointer-events:none}
+.corner{position:absolute;font-family:'Orbitron',sans-serif;font-size:13px;color:rgba(255,215,0,.35)}
+.logo{font-family:'Orbitron',sans-serif;font-size:7px;color:rgba(0,212,200,.6);letter-spacing:4px;text-align:center;margin-bottom:2px;text-transform:uppercase}
+.tagline{font-family:'Orbitron',sans-serif;font-size:6px;color:rgba(255,107,53,.55);letter-spacing:3px;text-align:center;margin-bottom:8px;text-transform:uppercase}
+.title{font-family:'Orbitron',sans-serif;font-size:20px;font-weight:900;color:#FFD700;text-align:center;letter-spacing:2px;text-shadow:0 0 14px rgba(255,215,0,.4);margin-bottom:2px}
+.sub{font-family:'Orbitron',sans-serif;font-size:7px;color:rgba(0,212,200,.55);letter-spacing:3px;text-align:center;margin-bottom:9px}
+.lore{font-size:10px;font-style:italic;line-height:1.65;color:#9ab8c8;border-left:2px solid #FF6B35;padding-left:9px;margin-bottom:9px}
+.qr-zone{border:1px solid rgba(0,212,200,.5);border-radius:4px;padding:6px;margin:0 auto 8px;width:95px;height:95px;background:white;display:flex;align-items:center;justify-content:center;font-size:8px;color:#333;text-align:center;line-height:1.4}
+.qr-inst{font-family:'Orbitron',sans-serif;font-size:7px;color:rgba(0,212,200,.42);letter-spacing:2px;text-align:center;margin-bottom:8px}
+.riddle-box{background:rgba(123,47,190,.12);border:1px solid rgba(123,47,190,.42);border-radius:3px;padding:9px 10px;margin-bottom:8px}
+.riddle-label{font-family:'Orbitron',sans-serif;font-size:6px;color:#b06dff;letter-spacing:2px;margin-bottom:5px}
+.riddle-text{font-size:10.5px;font-style:italic;line-height:1.7;color:#d4b8ff}
+.how{font-size:9px;line-height:1.85;color:#6a8898;margin-bottom:7px}
+.how strong{color:#00D4C8;font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:1px}
+.phases{font-size:8px;line-height:1.9;color:#4a6878}
+.phases span{color:rgba(255,107,53,.65);font-family:'Orbitron',sans-serif;letter-spacing:.5px}
+.glyph{text-align:center;letter-spacing:6px;opacity:.22;font-size:11px;margin:5px 0}
+.auth{font-family:'Orbitron',sans-serif;font-size:6px;color:rgba(255,215,0,.18);letter-spacing:2px;text-align:center;margin-top:4px}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="inner"></div>
+  <div class="corner" style="top:8px;left:10px">◈</div>
+  <div class="corner" style="top:8px;right:10px">◈</div>
+  <div class="corner" style="bottom:8px;left:10px">◈</div>
+  <div class="corner" style="bottom:8px;right:10px">◈</div>
+
+  <div class="logo">NO MAN'S SKY · ATLAS DIVISION</div>
+  <div class="tagline">TRAVELLER BRIEFING · CLASSIFIED · EASTER 2026</div>
+
+  <div class="title">THE EGG EXPEDITION</div>
+  <div class="sub">TRAVELLER: ELLIS · 10 WAYPOINTS · ATLAS CYCLE 2026</div>
+
+  <div class="lore">"Traveller Ellis — the Atlas has chosen you for the most important mission in the known universe. Eggs of every kind are hidden across this world. Find them. Refine them. Engineer them. Cook them. Collect them all."</div>
+
+  <div style="text-align:center">
+    <div class="qr-zone">GLUE<br><strong>qr_start.png</strong><br>HERE</div>
+  </div>
+  <div class="qr-inst">CONNECT TO HOME WIFI · THEN SCAN WITH iPHONE CAMERA</div>
+
+  <div class="riddle-box">
+    <div class="riddle-label">◈ ATLAS FIRST SIGNAL ◈</div>
+    <div class="riddle-text">
+      I glow in the dark near forgotten places.<br>
+      Crack me open — horror faces!<br>
+      Look where food sleeps cold and bright —<br>
+      your first Whispering Egg glows in the light.
+    </div>
+  </div>
+
+  <div class="how">
+    <strong>HOW TO PLAY</strong><br>
+    1. Scan QR → quest opens on your iPhone<br>
+    2. Solve the puzzle on screen<br>
+    3. Decode the riddle → find the next spot<br>
+    4. Find the QR code hidden there &amp; scan it<br>
+    5. Collect your rewards along the way!
+  </div>
+
+  <div class="phases">
+    <span>PHASE 1–2 ·</span> Whispering Eggs &amp; Nanites<br>
+    <span>PHASE 3–4 ·</span> Space Anomaly &amp; Taming<br>
+    <span>PHASE 5–6 ·</span> Egg Sequencer &amp; Hatching<br>
+    <span>PHASE 7–9 ·</span> Cook! Scrambled · Boiled · Fried<br>
+    <span>PHASE 10 ·</span> The Atlas · Your Certificate
+  </div>
+
+  <div class="glyph">◈ ◈ ◈ ◈ ◈</div>
+  <div class="auth">ATLAS AUTHENTICATION · PRIORITY OMEGA · EASTER 2026</div>
+</div>
+</body>
+</html>

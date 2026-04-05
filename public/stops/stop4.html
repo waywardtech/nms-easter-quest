@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Waypoint 4</title>
+<link rel="stylesheet" href="/css/quest.css">
+<style>
+.creature-area{text-align:center;padding:20px 16px;background:rgba(0,30,10,.8);border:1px solid rgba(0,200,80,.3);border-radius:6px;margin:10px 0}
+.c-emoji{font-size:80px;display:inline-block;transition:transform .3s,filter .3s;filter:drop-shadow(0 0 8px rgba(0,200,80,.3))}
+.c-emoji.happy{filter:drop-shadow(0 0 22px rgba(0,255,100,.7));transform:scale(1.15)}
+.c-emoji.shy{transform:scale(.9)}
+.love-bar{height:12px;background:rgba(0,50,20,.5);border-radius:6px;overflow:hidden;border:1px solid rgba(0,200,80,.3);margin:10px 0}
+.love-fill{height:100%;background:linear-gradient(90deg,rgba(255,100,100,.7),rgba(255,200,0,.8),rgba(0,255,100,.9));border-radius:6px;width:0%;transition:width .4s ease}
+.thought{font-size:1.1rem;font-style:italic;color:#80d0a0;min-height:26px;margin:8px 0}
+.pellet-row{display:flex;justify-content:center;gap:12px;margin-top:12px}
+.p-btn{background:rgba(0,100,40,.3);border:1px solid rgba(0,200,80,.5);border-radius:50px;padding:16px 26px;font-size:1.5rem;cursor:pointer;transition:all .2s;-webkit-appearance:none}
+.p-btn:active{transform:scale(.88);background:rgba(0,200,80,.2)}
+.love-label{font-family:'Orbitron',sans-serif;font-size:9px;color:rgba(0,200,80,.55);letter-spacing:2px}
+</style>
+</head>
+<body>
+<div class="nebula-bg" style="background:radial-gradient(ellipse at 50% 80%,rgba(0,60,20,.2) 0%,transparent 50%)"></div>
+<div class="quest-container">
+  <div class="hud">
+    <div class="hud-logo">NO MAN'S SKY</div>
+    <div class="hud-step">4 / 10</div>
+    <div class="hud-name">ELLIS</div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" style="width:40%"></div></div>
+
+  <div class="scene-art"><svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+    <defs><radialGradient id="bg4" cx="50%" cy="70%"><stop offset="0%" stop-color="#041208"/><stop offset="100%" stop-color="#010604"/></radialGradient><filter id="g4"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+    <rect width="400" height="200" fill="url(#bg4)"/>
+    <rect x="0" y="150" width="400" height="50" fill="rgba(5,20,8,.9)"/>
+    <circle cx="60"  cy="25" r="1.2" fill="white" opacity=".6"/>
+    <circle cx="200" cy="15" r="1"   fill="#a0ffc0" opacity=".5"/>
+    <circle cx="350" cy="30" r="1.5" fill="white" opacity=".7"/>
+    <path d="M60,150 Q55,132 60,118 Q65,132 60,150" fill="rgba(0,200,80,.4)"/>
+    <path d="M340,150 Q336,138 340,128 Q344,138 340,150" fill="rgba(0,200,80,.35)"/>
+    <path d="M80,150 Q77,142 80,136 Q83,142 80,150" fill="rgba(0,200,80,.3)"/>
+    <text x="200" y="148" text-anchor="middle" font-size="42" fill="rgba(255,255,255,.7)">🦕</text>
+    <circle cx="200" cy="140" r="30" fill="none" stroke="rgba(0,212,200,.4)" stroke-width="1.5" stroke-dasharray="4,4"/>
+    <text x="200" y="108" text-anchor="middle" font-size="8" fill="rgba(0,212,200,.6)" font-family="monospace">FAUNA DETECTED · THEROMA CLASS</text>
+    <text x="200" y="118" text-anchor="middle" font-size="7" fill="rgba(0,212,200,.4)" font-family="monospace">BYPRODUCT: COMPANION EGG</text>
+  </svg></div>
+
+  <div class="panel">
+    <div class="stamp">◈ WAYPOINT 4 — PLANET SURFACE ◈</div>
+    <div class="title">Tame the Creature!</div>
+    <p class="body">Feed it <strong>Creature Pellets</strong> until it trusts you. Fill the Love meter to 100% and it will lay an egg!</p>
+  </div>
+
+  <div class="activity" id="puzzle-section">
+    <div class="act-label">◈ FILL THE LOVE METER ◈</div>
+    <div class="creature-area">
+      <div class="c-emoji" id="cdisplay">🦕</div>
+      <div class="thought" id="thought">*sniffs the air*</div>
+      <div class="love-label">LOVE — <span id="lpct">0</span>%</div>
+      <div class="love-bar"><div class="love-fill" id="lfill"></div></div>
+    </div>
+    <div class="pellet-row">
+      <button class="p-btn" onclick="feed()">🌿 Feed</button>
+      <button class="p-btn" onclick="pet()" style="border-color:rgba(255,200,0,.5)">🤚 Pet</button>
+    </div>
+    <div id="answer-feedback" class="feedback"></div>
+  </div>
+
+  <div id="riddle-section" class="riddle hidden">
+    <div class="riddle-label">◈ NEXT COORDINATES ◈</div>
+    <div class="riddle-text">
+      A surface of silver, cold to touch,<br>
+      that shows your face — it knows you much.<br>
+      Where Travellers check their armour and gear —<br>
+      bring the egg to the mirror near.
+    </div>
+  </div>
+  <div id="collect-section" class="collect-notice hidden">
+    <div class="coll-icon">🐣</div>
+    <div class="coll-text"><strong>FIND YOUR REWARD!</strong>Look for hidden eggs near the back door!</div>
+  </div>
+  <div class="glyphs">◈ ◈ ◈</div>
+</div>
+<script src="/js/quest.js"></script>
+<script>
+let love=0,tamed=false;
+const thoughts=[
+  ['*sniffs the air*','*glances at you sideways*','*steps back slowly*'],
+  ['*edges closer*','*perks up*','Mrrph?'],
+  ['*wags tail*','*sniffs your hand*','Muurrr…'],
+  ['*trots toward you*','*nuzzles you*','Mrrr! 💚'],
+  ['*follows you everywhere*','*rubs head on you*','MUURR! 💚💚'],
+  ['🥚 An egg! 💚💚💚','BONDED!','THE EGG IS YOURS!']
+];
+function getT(){const i=[0,20,40,60,80,100].reverse().find(t=>love>=t);const a=thoughts[i/20];return a[Math.floor(Math.random()*a.length)];}
+function upd(){document.getElementById('lfill').style.width=love+'%';document.getElementById('lpct').textContent=love;document.getElementById('thought').textContent=getT();const c=document.getElementById('cdisplay');c.className='c-emoji'+(love>=80?' happy':love<20?' shy':'');}
+function feed(){if(tamed)return;love=Math.min(100,love+9);upd();if(love>=100&&!tamed)done();}
+function pet(){if(tamed)return;love=Math.min(100,love+5);document.getElementById('thought').textContent='*purrs contentedly*';upd();if(love>=100&&!tamed)done();}
+function done(){tamed=true;const fb=document.getElementById('answer-feedback');fb.className='feedback ok';fb.textContent='✦ THEROMA BONDED — COMPANION EGG RECEIVED ✦';setTimeout(()=>revealRiddle(4),900);}
+upd();
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Waypoint 8</title>
+<link rel="stylesheet" href="/css/quest.css">
+<style>
+.step{display:flex;gap:12px;align-items:flex-start;background:rgba(0,20,40,.8);border:1px solid rgba(0,212,200,.2);border-radius:6px;padding:14px;margin:8px 0;transition:all .3s}
+.step.done{background:rgba(0,212,200,.05);border-color:rgba(0,212,200,.4)}
+.step-num{font-family:'Orbitron',sans-serif;font-size:11px;color:rgba(0,212,200,.4);width:22px;flex-shrink:0;padding-top:3px}
+.step-num.done{color:var(--teal)}
+.tick{width:32px;height:32px;flex-shrink:0;border:2px solid rgba(0,212,200,.3);border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:all .3s;background:rgba(0,20,40,.8);-webkit-appearance:none}
+.tick.checked{background:rgba(0,212,200,.2);border-color:var(--teal)}
+.step-text{font-size:1rem;color:#b0c8d8;line-height:1.7;flex:1}
+.step-text strong{color:var(--teal)}
+.nms-note{font-size:.8rem;font-style:italic;color:rgba(0,212,200,.55);border-left:2px solid rgba(0,212,200,.25);padding-left:8px;margin-top:6px}
+.ing-chip{display:inline-block;background:rgba(0,212,200,.08);border:1px solid rgba(0,212,200,.2);border-radius:20px;padding:5px 11px;font-size:.85rem;color:#90c8d0;margin:3px}
+.count-line{font-family:'Orbitron',sans-serif;font-size:10px;color:rgba(0,212,200,.5);text-align:right;letter-spacing:2px;margin-bottom:8px}
+.timer-big{font-family:'Orbitron',sans-serif;font-size:3rem;color:var(--teal);text-align:center;padding:10px;text-shadow:0 0 20px rgba(0,212,200,.4)}
+.timer-row{display:flex;gap:10px;justify-content:center;margin:8px 0}
+.t-btn{background:rgba(0,20,40,.9);border:1px solid var(--border);border-radius:4px;padding:12px 24px;color:var(--teal);font-family:'Orbitron',sans-serif;font-size:.85rem;cursor:pointer;transition:all .2s;-webkit-appearance:none}
+.t-btn:hover{background:rgba(0,212,200,.1)}
+</style>
+</head>
+<body>
+<div class="nebula-bg" style="background:radial-gradient(ellipse at 50% 50%,rgba(0,60,80,.15) 0%,transparent 50%)"></div>
+<div class="quest-container">
+  <div class="hud">
+    <div class="hud-logo">NO MAN'S SKY</div>
+    <div class="hud-step">8 / 10</div>
+    <div class="hud-name">ELLIS</div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" style="width:80%"></div></div>
+
+  <div class="scene-art"><svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+    <defs><radialGradient id="bg8" cx="40%" cy="55%"><stop offset="0%" stop-color="#00151e"/><stop offset="100%" stop-color="#01070a"/></radialGradient><filter id="g8"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+    <rect width="400" height="200" fill="url(#bg8)"/>
+    <ellipse cx="200" cy="80" rx="90" ry="22" fill="rgba(0,40,60,.8)" stroke="rgba(0,212,200,.3)" stroke-width="1.5"/>
+    <rect x="110" y="78" width="180" height="90" rx="3" fill="rgba(0,30,50,.95)" stroke="rgba(0,212,200,.3)" stroke-width="1"/>
+    <rect x="115" y="98" width="170" height="64" rx="2" fill="rgba(0,50,80,.6)"/>
+    <circle cx="155" cy="136" r="4" fill="none" stroke="rgba(0,212,200,.3)" stroke-width="1" filter="url(#g8)"/>
+    <circle cx="200" cy="122" r="5" fill="none" stroke="rgba(0,212,200,.25)" stroke-width="1" filter="url(#g8)"/>
+    <circle cx="245" cy="134" r="3" fill="none" stroke="rgba(0,212,200,.3)" stroke-width="1" filter="url(#g8)"/>
+    <ellipse cx="200" cy="147" rx="18" ry="22" fill="rgba(255,245,220,.6)" stroke="rgba(255,230,180,.5)" stroke-width="1" filter="url(#g8)"/>
+    <path d="M110,108 Q95,108 95,98 Q95,88 110,88" fill="none" stroke="rgba(0,212,200,.3)" stroke-width="3"/>
+    <path d="M290,108 Q305,108 305,98 Q305,88 290,88" fill="none" stroke="rgba(0,212,200,.3)" stroke-width="3"/>
+    <path d="M175,78 Q177,62 175,48" fill="none" stroke="rgba(200,240,255,.15)" stroke-width="2"/>
+    <path d="M200,76 Q202,58 200,42" fill="none" stroke="rgba(200,240,255,.12)" stroke-width="2"/>
+    <path d="M225,78 Q227,62 225,48" fill="none" stroke="rgba(200,240,255,.15)" stroke-width="2"/>
+    <text x="200" y="25" text-anchor="middle" font-size="8" fill="rgba(0,212,200,.4)" font-family="monospace" letter-spacing="2">NUTRIENT PROCESSOR · BOILED EGG → EGG SALAD</text>
+  </svg></div>
+
+  <div class="panel">
+    <div class="stamp">◈ WAYPOINT 8 — NUTRIENT PROCESSOR · RECIPE 2 ◈</div>
+    <div class="title">Boiled Egg Salad Sandwich!</div>
+    <div style="margin-bottom:6px"><span class="ing-chip">🥚 2 eggs</span><span class="ing-chip">💧 Pot of water</span><span class="ing-chip">🫙 Mayonnaise</span><span class="ing-chip">🧂 Salt &amp; pepper</span><span class="ing-chip">🍞 Bread</span></div>
+  </div>
+
+  <!-- Timer -->
+  <div class="panel" style="border-color:rgba(0,212,200,.3)">
+    <div class="stamp">◈ PHASE 1 — BOIL THE EGG — 10 MINUTES ◈</div>
+    <p class="body" style="margin-bottom:8px">Put eggs in a pot. Cover with cold water. Bring to the boil. Once boiling — start the timer!</p>
+    <div class="timer-big" id="timer">10:00</div>
+    <div class="timer-row">
+      <button class="t-btn" onclick="startT()">▶ START</button>
+      <button class="t-btn" onclick="resetT()">↺ RESET</button>
+    </div>
+  </div>
+
+  <div class="activity" id="puzzle-section">
+    <div class="act-label">◈ PHASE 2 — MAKE THE SANDWICH ◈</div>
+    <div class="count-line"><span id="sc">0</span> / 5 DONE</div>
+
+    <div class="step" id="s1"><span class="step-num" id="n1">1</span><button class="tick" id="c1" onclick="tick(1)">☐</button><div class="step-text"><strong>Move eggs to cold water</strong> for 5 minutes. Then peel them under running water.<div class="nms-note">⟐ Extract output from Processor inventory ⟐</div></div></div>
+
+    <div class="step" id="s2"><span class="step-num" id="n2">2</span><button class="tick" id="c2" onclick="tick(2)">☐</button><div class="step-text"><strong>Chop the eggs</strong> into small pieces in a bowl. Not too tiny, not too big.<div class="nms-note">⟐ Break protein matrix — second cycle ⟐</div></div></div>
+
+    <div class="step" id="s3"><span class="step-num" id="n3">3</span><button class="tick" id="c3" onclick="tick(3)">☐</button><div class="step-text"><strong>Add 1–2 spoons of mayonnaise.</strong> Stir until creamy. Add salt and pepper to taste.<div class="nms-note">⟐ Combine with binding catalyst ⟐</div></div></div>
+
+    <div class="step" id="s4"><span class="step-num" id="n4">4</span><button class="tick" id="c4" onclick="tick(4)">☐</button><div class="step-text"><strong>Toast the bread</strong> if you like. Butter it while it's hot.<div class="nms-note">⟐ Prepare secondary substrate layer ⟐</div></div></div>
+
+    <div class="step" id="s5"><span class="step-num" id="n5">5</span><button class="tick" id="c5" onclick="tick(5)">☐</button><div class="step-text"><strong>Spoon egg salad onto bread.</strong> Top with the second slice. Cut in half. Eat! <em>The Atlas cuts diagonally.</em><div class="nms-note">⟐ Egg Salad Sandwich complete — present to Iteration: Cronus ⟐</div></div></div>
+
+    <button class="btn" id="done-btn" onclick="confirm8()" style="opacity:.35;pointer-events:none;border-color:rgba(0,212,200,.6);color:rgba(0,212,200,.9)">◈ SANDWICH COMPLETE ◈</button>
+    <div id="answer-feedback" class="feedback"></div>
+  </div>
+
+  <div id="riddle-section" class="riddle hidden">
+    <div class="riddle-label">◈ NEXT COORDINATES ◈</div>
+    <div class="riddle-text">
+      I'm soft and full of cushion-stuff,<br>
+      where you sit when you've had enough.<br>
+      Find me in the screen-room bright —<br>
+      one more egg to cook tonight!
+    </div>
+  </div>
+  <div id="collect-section" class="collect-notice hidden">
+    <div class="coll-icon">🥪</div>
+    <div class="coll-text"><strong>FIND YOUR REWARD!</strong>Look for hidden eggs near the kitchen hob!</div>
+  </div>
+  <div class="glyphs">◈ ◈ ◈</div>
+</div>
+<script src="/js/quest.js"></script>
+<script>
+let secs=600,tRun=false,tInt;
+function updT(){const m=Math.floor(secs/60),s=secs%60;const el=document.getElementById('timer');el.textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;if(secs===0){el.style.color='var(--orange)';el.textContent='DONE! 🥚';clearInterval(tInt);tRun=false;}}
+function startT(){if(tRun)return;tRun=true;tInt=setInterval(()=>{if(secs>0){secs--;updT();}},1000);}
+function resetT(){clearInterval(tInt);tRun=false;secs=600;document.getElementById('timer').style.color='var(--teal)';updT();}
+let done=0;
+function tick(n){const c=document.getElementById('c'+n);if(c.textContent==='☑')return;c.textContent='☑';c.classList.add('checked');document.getElementById('n'+n).classList.add('done');document.getElementById('s'+n).classList.add('done');done++;document.getElementById('sc').textContent=done;if(done>=5){const b=document.getElementById('done-btn');b.style.opacity='1';b.style.pointerEvents='auto';}}
+function confirm8(){const fb=document.getElementById('answer-feedback');fb.className='feedback ok';fb.textContent='✦ EGG SALAD SANDWICH COMPLETE ✦';setTimeout(()=>revealRiddle(8),800);}
+</script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Atlas Certificate</title>
+<link rel="stylesheet" href="/css/quest.css">
+<style>
+/* ── CERT WRAPPER ── */
+.cert-wrap {
+  margin: 14px;
+  position: relative;
+  background: rgba(4,6,14,0.97);
+}
+.cert-outer-border {
+  position: absolute; inset: 0;
+  border: 2px solid var(--gold);
+  border-radius: 6px;
+  pointer-events: none; z-index: 2;
+  box-shadow: 0 0 40px rgba(255,215,0,.18), inset 0 0 40px rgba(255,215,0,.04);
+  animation: borderGlow 3.5s ease-in-out infinite;
+}
+@keyframes borderGlow {
+  0%,100%{box-shadow:0 0 30px rgba(255,215,0,.18),inset 0 0 30px rgba(255,215,0,.04)}
+  50%{box-shadow:0 0 65px rgba(255,215,0,.45),inset 0 0 65px rgba(255,215,0,.09)}
+}
+.cert-inner-border {
+  position: absolute; inset: 8px;
+  border: 1px solid rgba(255,215,0,.18);
+  border-radius: 3px;
+  pointer-events: none; z-index: 2;
+}
+
+/* ── CORNER ORNAMENTS ── */
+.corner {
+  position: absolute; z-index: 3;
+  width: 28px; height: 28px;
+  pointer-events: none;
+}
+.corner svg { width: 100%; height: 100%; }
+.c-tl { top: 6px;  left: 6px; }
+.c-tr { top: 6px;  right: 6px;  transform: scaleX(-1); }
+.c-bl { bottom: 6px; left: 6px;  transform: scaleY(-1); }
+.c-br { bottom: 6px; right: 6px;  transform: scale(-1); }
+
+/* ── FULL-BLEED SCENE SVG ── */
+.cert-scene {
+  width: 100%; height: 220px;
+  display: block; border-radius: 4px 4px 0 0;
+  overflow: hidden;
+}
+
+/* ── CERT BODY ── */
+.cert-body { padding: 0 20px 22px; position: relative; z-index: 1; }
+
+.cert-division {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 7px; letter-spacing: 5px;
+  color: rgba(255,215,0,.4);
+  text-align: center; text-transform: uppercase;
+  padding-top: 14px; margin-bottom: 4px;
+}
+.cert-presents {
+  font-family: 'Exo 2', sans-serif;
+  font-size: .75rem; font-style: italic; font-weight: 300;
+  color: rgba(255,215,0,.35);
+  text-align: center; letter-spacing: 2px; margin-bottom: 10px;
+}
+.cert-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,215,0,.35), transparent);
+  margin: 10px 0;
+}
+.cert-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 26px; font-weight: 900;
+  color: var(--gold);
+  text-align: center;
+  line-height: 1.15; letter-spacing: 2px;
+  text-shadow: 0 0 30px rgba(255,215,0,.5), 0 0 60px rgba(255,107,53,.2);
+  margin: 6px 0 3px;
+}
+.cert-sub {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px; letter-spacing: 5px;
+  color: rgba(255,215,0,.45);
+  text-align: center; margin-bottom: 10px;
+}
+.cert-certifies {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px; letter-spacing: 3px;
+  color: rgba(200,180,100,.4);
+  text-align: center; margin-bottom: 4px;
+}
+.cert-name {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 38px; font-style: italic; font-weight: 300;
+  color: white; text-align: center;
+  text-shadow: 0 0 30px rgba(255,255,255,.25);
+  margin: 6px 0 10px;
+  line-height: 1.1;
+}
+
+/* ── SEAL ── */
+.seal-wrap { display: flex; justify-content: center; margin: 8px 0 10px; }
+.seal-inner {
+  width: 88px; height: 88px; position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.seal-ring-1 {
+  position: absolute; inset: 0;
+  border: 1.5px solid rgba(255,215,0,.3);
+  border-radius: 50%;
+  animation: spinR 22s linear infinite;
+}
+.seal-ring-2 {
+  position: absolute; inset: 9px;
+  border: 1px dashed rgba(255,215,0,.18);
+  border-radius: 50%;
+  animation: spinR 16s linear infinite reverse;
+}
+.seal-ring-3 {
+  position: absolute; inset: 18px;
+  border: 1px solid rgba(255,107,53,.2);
+  border-radius: 50%;
+  animation: spinR 10s linear infinite;
+}
+@keyframes spinR { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+.seal-glyph-wrap {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+}
+.seal-atlas-glyph { font-size: 34px; filter: drop-shadow(0 0 12px rgba(255,215,0,.6)); animation: sealPulse 2.5s ease-in-out infinite; }
+@keyframes sealPulse{0%,100%{filter:drop-shadow(0 0 12px rgba(255,215,0,.6))}50%{filter:drop-shadow(0 0 24px rgba(255,215,0,.95))}}
+
+/* ── CERT BODY TEXT ── */
+.cert-body-text {
+  font-size: .88rem; line-height: 1.85;
+  color: #9ab8c8; text-align: center;
+  margin: 6px 0 10px;
+}
+
+/* ── STATS TABLE ── */
+.stats { margin: 8px 0 10px; }
+.stat-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255,215,0,.07);
+  font-size: .82rem;
+}
+.stat-row:last-child { border: none; }
+.stat-ic { font-size: 16px; width: 22px; flex-shrink: 0; text-align: center; }
+.stat-lb {
+  flex: 1; color: rgba(200,180,100,.45);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 7.5px; letter-spacing: 1px;
+}
+.stat-vl {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px; color: var(--gold);
+}
+
+.cert-quote {
+  font-size: .82rem; font-style: italic;
+  color: rgba(200,180,100,.38);
+  text-align: center; line-height: 1.8;
+  margin: 8px 0;
+}
+.cert-auth {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 6.5px; letter-spacing: 2.5px;
+  color: rgba(255,215,0,.18);
+  text-align: center; margin-top: 8px;
+}
+
+/* ── CELEBRATION ── */
+.celebration {
+  margin: 0 14px 20px;
+  border: 1px solid rgba(255,215,0,.2);
+  border-radius: 6px;
+  padding: 20px 16px;
+  text-align: center;
+  background: rgba(255,215,0,.03);
+}
+.cel-emojis {
+  font-size: 28px; letter-spacing: 6px;
+  margin: 10px 0;
+  animation: fadeUp .8s 1s ease both;
+}
+</style>
+</head>
+<body>
+<div class="nebula-bg"></div>
+<div class="quest-container">
+
+  <div class="hud">
+    <div class="hud-logo">NO MAN'S SKY</div>
+    <div class="hud-step">QUEST COMPLETE</div>
+    <div class="hud-name">FIRST TRAVELLER</div>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" style="width:100%;background:linear-gradient(90deg,var(--gold),var(--orange),var(--teal),var(--gold))"></div>
+  </div>
+
+  <!-- CERTIFICATE -->
+  <div class="cert-wrap">
+    <div class="cert-outer-border"></div>
+    <div class="cert-inner-border"></div>
+
+    <!-- corner ornaments -->
+    <div class="corner c-tl"><svg viewBox="0 0 28 28"><path d="M2 26 L2 2 L26 2" fill="none" stroke="rgba(255,215,0,0.5)" stroke-width="1.5"/><circle cx="2" cy="2" r="2" fill="rgba(255,215,0,0.5)"/><path d="M6 22 L6 6 L22 6" fill="none" stroke="rgba(255,215,0,0.2)" stroke-width="0.8"/></svg></div>
+    <div class="corner c-tr"><svg viewBox="0 0 28 28"><path d="M2 26 L2 2 L26 2" fill="none" stroke="rgba(255,215,0,0.5)" stroke-width="1.5"/><circle cx="2" cy="2" r="2" fill="rgba(255,215,0,0.5)"/><path d="M6 22 L6 6 L22 6" fill="none" stroke="rgba(255,215,0,0.2)" stroke-width="0.8"/></svg></div>
+    <div class="corner c-bl"><svg viewBox="0 0 28 28"><path d="M2 26 L2 2 L26 2" fill="none" stroke="rgba(255,215,0,0.5)" stroke-width="1.5"/><circle cx="2" cy="2" r="2" fill="rgba(255,215,0,0.5)"/><path d="M6 22 L6 6 L22 6" fill="none" stroke="rgba(255,215,0,0.2)" stroke-width="0.8"/></svg></div>
+    <div class="corner c-br"><svg viewBox="0 0 28 28"><path d="M2 26 L2 2 L26 2" fill="none" stroke="rgba(255,215,0,0.5)" stroke-width="1.5"/><circle cx="2" cy="2" r="2" fill="rgba(255,215,0,0.5)"/><path d="M6 22 L6 6 L22 6" fill="none" stroke="rgba(255,215,0,0.2)" stroke-width="0.8"/></svg></div>
+
+    <!-- FULL-BLEED SCENE ART -->
+    <svg class="cert-scene" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="bgC" cx="50%" cy="40%">
+          <stop offset="0%"   stop-color="#1c1000"/>
+          <stop offset="55%"  stop-color="#08050a"/>
+          <stop offset="100%" stop-color="#030108"/>
+        </radialGradient>
+        <radialGradient id="aRGC" cx="42%" cy="38%">
+          <stop offset="0%"   stop-color="rgba(255,240,120,.97)"/>
+          <stop offset="38%"  stop-color="rgba(255,107,53,.78)"/>
+          <stop offset="100%" stop-color="rgba(70,0,160,.9)"/>
+        </radialGradient>
+        <filter id="gC"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="gC2"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <rect width="400" height="220" fill="url(#bgC)"/>
+
+      <!-- dense gold star field -->
+      <circle cx="18"  cy="14" r="2"   fill="#ffd090" opacity=".95"/>
+      <circle cx="52"  cy="7"  r="1.2" fill="white"   opacity=".8"/>
+      <circle cx="90"  cy="20" r="1.5" fill="#ffd090" opacity=".75"/>
+      <circle cx="138" cy="10" r="1"   fill="white"   opacity=".9"/>
+      <circle cx="175" cy="27" r="1.8" fill="#ffd090" opacity=".7"/>
+      <circle cx="222" cy="6"  r="1.2" fill="white"   opacity=".85"/>
+      <circle cx="268" cy="18" r="2"   fill="#ffd090" opacity=".9"/>
+      <circle cx="312" cy="8"  r="1.5" fill="white"   opacity=".8"/>
+      <circle cx="355" cy="22" r="1.2" fill="#ffd090" opacity=".75"/>
+      <circle cx="388" cy="10" r="1.8" fill="white"   opacity=".9"/>
+      <circle cx="35"  cy="50" r="1"   fill="#ffd090" opacity=".6"/>
+      <circle cx="72"  cy="42" r="1.2" fill="white"   opacity=".5"/>
+      <circle cx="330" cy="45" r="1"   fill="#ffd090" opacity=".65"/>
+      <circle cx="370" cy="38" r="1.3" fill="white"   opacity=".55"/>
+      <circle cx="200" cy="30" r="1.5" fill="white"   opacity=".7"/>
+      <circle cx="145" cy="42" r="1"   fill="#ffd090" opacity=".55"/>
+      <circle cx="255" cy="38" r="1"   fill="white"   opacity=".6"/>
+
+      <!-- outer glow halos -->
+      <circle cx="200" cy="118" r="100" fill="rgba(255,215,0,.025)" filter="url(#gC)"/>
+      <circle cx="200" cy="118" r="78"  fill="rgba(255,107,53,.02)"  filter="url(#gC)"/>
+
+      <!-- rings -->
+      <ellipse cx="200" cy="118" rx="115" ry="32" fill="none" stroke="rgba(255,215,0,.22)" stroke-width="1.5" filter="url(#gC2)"/>
+      <ellipse cx="200" cy="118" rx="94"  ry="25" fill="none" stroke="rgba(255,215,0,.12)" stroke-width="1"/>
+      <ellipse cx="200" cy="118" rx="72"  ry="19" fill="none" stroke="rgba(255,107,53,.15)" stroke-width="1"/>
+      <ellipse cx="200" cy="118" rx="50"  ry="13" fill="none" stroke="rgba(123,47,190,.2)"  stroke-width=".8"/>
+
+      <!-- Atlas orb -->
+      <circle cx="200" cy="118" r="58" fill="url(#aRGC)" filter="url(#gC)" opacity=".92"/>
+
+      <!-- inner glyph -->
+      <polygon points="200,84 226,126 200,116 174,126" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2.5" filter="url(#gC2)"/>
+      <circle cx="200" cy="118" r="14" fill="rgba(255,255,255,.18)" filter="url(#gC2)"/>
+      <circle cx="200" cy="118" r="7"  fill="rgba(255,255,255,.28)" filter="url(#gC2)"/>
+
+      <!-- radial rays -->
+      <line x1="200" y1="60"  x2="200" y2="44"  stroke="rgba(255,215,0,.28)" stroke-width="1.5"/>
+      <line x1="251" y1="74"  x2="264" y2="60"  stroke="rgba(255,215,0,.22)" stroke-width="1.2"/>
+      <line x1="149" y1="74"  x2="136" y2="60"  stroke="rgba(255,215,0,.22)" stroke-width="1.2"/>
+      <line x1="268" y1="118" x2="284" y2="118" stroke="rgba(255,215,0,.18)" stroke-width="1.2"/>
+      <line x1="132" y1="118" x2="116" y2="118" stroke="rgba(255,215,0,.18)" stroke-width="1.2"/>
+      <line x1="251" y1="162" x2="264" y2="176" stroke="rgba(255,215,0,.18)" stroke-width="1"/>
+      <line x1="149" y1="162" x2="136" y2="176" stroke="rgba(255,215,0,.18)" stroke-width="1"/>
+
+      <!-- orbiting achievement icons -->
+      <text x="96"  y="84"  font-size="17" fill="rgba(0,212,200,.6)">🥚</text>
+      <text x="282" y="100" font-size="16" fill="rgba(255,107,53,.55)">🐣</text>
+      <text x="78"  y="156" font-size="15" fill="rgba(255,215,0,.55)">🍳</text>
+      <text x="290" y="158" font-size="15" fill="rgba(123,47,190,.55)">🧬</text>
+      <text x="158" y="192" font-size="14" fill="rgba(255,107,53,.45)">🥪</text>
+      <text x="228" y="190" font-size="14" fill="rgba(0,212,200,.45)">🧱</text>
+      <text x="200" y="28"  font-size="13" fill="rgba(255,215,0,.4)">◈</text>
+
+      <!-- gold dust particles -->
+      <circle cx="155" cy="72"  r="2"   fill="rgba(255,215,0,.4)" filter="url(#gC2)"/>
+      <circle cx="244" cy="68"  r="1.5" fill="rgba(255,215,0,.35)" filter="url(#gC2)"/>
+      <circle cx="128" cy="118" r="2"   fill="rgba(255,215,0,.3)" filter="url(#gC2)"/>
+      <circle cx="272" cy="118" r="2"   fill="rgba(255,215,0,.3)" filter="url(#gC2)"/>
+      <circle cx="160" cy="165" r="1.5" fill="rgba(255,215,0,.3)" filter="url(#gC2)"/>
+      <circle cx="242" cy="165" r="1.5" fill="rgba(255,215,0,.3)" filter="url(#gC2)"/>
+
+      <!-- bottom fade -->
+      <rect x="0" y="175" width="400" height="45" fill="url(#bgC)" opacity=".9"/>
+    </svg>
+
+    <!-- CERT TEXT BODY -->
+    <div class="cert-body">
+      <div class="cert-division">NO MAN'S SKY · ATLAS DIVISION · EASTER EXPEDITION</div>
+      <div class="cert-presents">presents</div>
+      <div class="cert-divider"></div>
+      <div class="cert-title">Certificate<br>of the Traveller</div>
+      <div class="cert-sub">FIRST CLASS · EASTER 2026</div>
+      <div class="cert-divider"></div>
+      <div class="cert-certifies">THIS CERTIFIES THAT</div>
+      <div class="cert-name">Traveller Ellis</div>
+
+      <!-- animated seal -->
+      <div class="seal-wrap">
+        <div class="seal-inner">
+          <div class="seal-ring-1"></div>
+          <div class="seal-ring-2"></div>
+          <div class="seal-ring-3"></div>
+          <div class="seal-glyph-wrap">
+            <div class="seal-atlas-glyph">⭐</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-divider"></div>
+
+      <div class="cert-body-text">
+        has completed all ten Atlas Waypoints of the Easter Expedition — harvesting Whispering Eggs, refining Nanites, docking at the Space Anomaly, taming a creature, engineering a Companion Egg in the Egg Sequencer, hatching it, and cooking three real egg recipes from scratch.
+      </div>
+
+      <div class="cert-divider"></div>
+
+      <!-- stats -->
+      <div class="stats">
+        <div class="stat-row"><div class="stat-ic">🗺</div><div class="stat-lb">WAYPOINTS COMPLETED</div><div class="stat-vl">10 / 10</div></div>
+        <div class="stat-row"><div class="stat-ic">🥚</div><div class="stat-lb">LARVAL CORES HARVESTED</div><div class="stat-vl">5</div></div>
+        <div class="stat-row"><div class="stat-ic">⬡</div><div class="stat-lb">NANITES REFINED</div><div class="stat-vl">250</div></div>
+        <div class="stat-row"><div class="stat-ic">🛸</div><div class="stat-lb">SPACE ANOMALY DOCKED</div><div class="stat-vl">CONFIRMED</div></div>
+        <div class="stat-row"><div class="stat-ic">🧬</div><div class="stat-lb">EGG SEQUENCER SLOTS</div><div class="stat-vl">4 / 4</div></div>
+        <div class="stat-row"><div class="stat-ic">🐾</div><div class="stat-lb">COMPANION HATCHED</div><div class="stat-vl">REGISTERED</div></div>
+        <div class="stat-row"><div class="stat-ic">🍳</div><div class="stat-lb">SCRAMBLED EGGS</div><div class="stat-vl">FABRICATED ✓</div></div>
+        <div class="stat-row"><div class="stat-ic">🥪</div><div class="stat-lb">EGG SALAD SANDWICH</div><div class="stat-vl">FABRICATED ✓</div></div>
+        <div class="stat-row"><div class="stat-ic">🥚</div><div class="stat-lb">FRIED EGG ON TOAST</div><div class="stat-vl">FABRICATED ✓</div></div>
+        <div class="stat-row"><div class="stat-ic">🌌</div><div class="stat-lb">ATLAS RANK</div><div class="stat-vl">FIRST TRAVELLER</div></div>
+      </div>
+
+      <div class="cert-divider"></div>
+
+      <div class="cert-quote">
+        "The journey of the Traveller has no true end.<br>
+        Only new beginnings across infinite stars.<br>
+        But this chapter? This chapter was perfect."<br>
+        <span style="font-size:.7rem;letter-spacing:3px;color:rgba(255,215,0,.3)">— THE ATLAS</span>
+      </div>
+
+      <div class="cert-divider"></div>
+      <div class="cert-auth">ATLAS AUTHENTICATION SEAL · VERIFIED · EASTER EXPEDITION 2026</div>
+    </div>
+  </div><!-- cert-wrap -->
+
+  <!-- CELEBRATION -->
+  <div class="celebration">
+    <div class="title" style="font-size:1.3rem;margin-bottom:8px">🎉 Happy Easter, Ellis! 🎉</div>
+    <p class="body" style="text-align:center;font-size:1rem">
+      You're an incredible Traveller, a master chef, and a genetic engineer. The Atlas is proud.
+    </p>
+    <div class="cel-emojis">🥚 🐣 🍳 🧬 🧱 ⭐</div>
+    <div style="font-family:'Orbitron',sans-serif;font-size:8px;color:rgba(0,212,200,.35);letter-spacing:3px;margin-top:10px">SEE YOU IN THE NEXT GALAXY</div>
+  </div>
+
+</div>
+<script src="/js/quest.js"></script>
+<script>
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      [523,659,784,523,659,784,1047,784,659,523].forEach((f,i) => {
+        const o=ctx.createOscillator(), g=ctx.createGain();
+        o.connect(g); g.connect(ctx.destination);
+        o.type = i === 9 ? 'sine' : 'triangle';
+        o.frequency.value = f;
+        const t = ctx.currentTime + i * 0.18;
+        g.gain.setValueAtTime(0.06, t);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
+        o.start(t); o.stop(t + 0.36);
+      });
+    } catch(e) {}
+  }, 500);
+});
+</script>
+</body>
+</html>

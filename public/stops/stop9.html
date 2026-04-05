@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Waypoint 9</title>
+<link rel="stylesheet" href="/css/quest.css">
+<style>
+.step{display:flex;gap:12px;align-items:flex-start;background:rgba(0,20,40,.8);border:1px solid rgba(255,215,0,.18);border-radius:6px;padding:14px;margin:8px 0;transition:all .3s}
+.step.done{background:rgba(255,215,0,.04);border-color:rgba(255,215,0,.4)}
+.step-num{font-family:'Orbitron',sans-serif;font-size:11px;color:rgba(255,215,0,.4);width:22px;flex-shrink:0;padding-top:3px}
+.step-num.done{color:var(--gold)}
+.tick{width:32px;height:32px;flex-shrink:0;border:2px solid rgba(255,215,0,.3);border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:all .3s;background:rgba(20,15,0,.8);-webkit-appearance:none}
+.tick.checked{background:rgba(255,215,0,.15);border-color:var(--gold)}
+.step-text{font-size:1rem;color:#b0c8d8;line-height:1.7;flex:1}
+.step-text strong{color:var(--gold)}
+.nms-note{font-size:.8rem;font-style:italic;color:rgba(255,200,80,.5);border-left:2px solid rgba(255,200,80,.25);padding-left:8px;margin-top:6px}
+.ing-chip{display:inline-block;background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.2);border-radius:20px;padding:5px 11px;font-size:.85rem;color:#d0b870;margin:3px}
+.count-line{font-family:'Orbitron',sans-serif;font-size:10px;color:rgba(255,215,0,.5);text-align:right;letter-spacing:2px;margin-bottom:8px}
+.style-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 0}
+.style-btn{background:rgba(20,15,0,.9);border:1px solid rgba(255,215,0,.2);border-radius:6px;padding:14px 6px;cursor:pointer;text-align:center;font-size:.9rem;color:#d0b870;transition:all .2s;-webkit-appearance:none;line-height:1.5}
+.style-btn.chosen{border-color:rgba(255,215,0,.75);background:rgba(255,215,0,.1);color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="nebula-bg" style="background:radial-gradient(ellipse at 50% 60%,rgba(80,60,0,.15) 0%,transparent 50%)"></div>
+<div class="quest-container">
+  <div class="hud">
+    <div class="hud-logo">NO MAN'S SKY</div>
+    <div class="hud-step">9 / 10</div>
+    <div class="hud-name">ELLIS</div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" style="width:90%"></div></div>
+
+  <div class="scene-art"><svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+    <defs><radialGradient id="bg9" cx="50%" cy="60%"><stop offset="0%" stop-color="#1a1000"/><stop offset="100%" stop-color="#060400"/></radialGradient><filter id="g9"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+    <rect width="400" height="200" fill="url(#bg9)"/>
+    <ellipse cx="200" cy="110" rx="100" ry="35" fill="rgba(20,15,5,.97)" stroke="rgba(255,215,0,.4)" stroke-width="1.5"/>
+    <ellipse cx="200" cy="107" rx="85" ry="28" fill="rgba(10,8,2,.97)"/>
+    <ellipse cx="200" cy="107" rx="75" ry="24" fill="rgba(255,200,50,.04)" filter="url(#g9)"/>
+    <ellipse cx="200" cy="107" rx="45" ry="18" fill="rgba(255,252,240,.85)"/>
+    <circle cx="200" cy="104" r="14" fill="rgba(255,180,0,.9)" filter="url(#g9)"/>
+    <circle cx="200" cy="104" r="10" fill="rgba(255,200,30,.95)"/>
+    <circle cx="195" cy="99"  r="4"  fill="rgba(255,230,100,.8)"/>
+    <rect x="295" y="102" width="80" height="16" rx="8" fill="rgba(30,20,5,.9)" stroke="rgba(255,215,0,.2)" stroke-width="1"/>
+    <rect x="60" y="84" width="55" height="62" rx="4" fill="rgba(180,120,30,.4)" stroke="rgba(200,150,50,.4)" stroke-width="1"/>
+    <rect x="65" y="89" width="45" height="52" rx="2" fill="rgba(150,90,20,.5)"/>
+    <ellipse cx="87" cy="95" rx="15" ry="5" fill="rgba(255,215,0,.25)" filter="url(#g9)"/>
+    <ellipse cx="200" cy="152" rx="80" ry="14" fill="rgba(255,150,0,.05)" filter="url(#g9)"/>
+    <text x="200" y="24" text-anchor="middle" font-size="8" fill="rgba(255,215,0,.4)" font-family="monospace" letter-spacing="2">NUTRIENT PROCESSOR · FRIED EGG ON TOAST</text>
+  </svg></div>
+
+  <div class="panel">
+    <div class="stamp">◈ WAYPOINT 9 — NUTRIENT PROCESSOR · RECIPE 3 ◈</div>
+    <div class="title">Fried Egg on Toast!</div>
+    <div style="margin-bottom:8px"><span class="ing-chip">🥚 1–2 eggs</span><span class="ing-chip">🧈 Butter or oil</span><span class="ing-chip">🍞 2 slices bread</span><span class="ing-chip">🧂 Salt &amp; pepper</span></div>
+    <p class="body">First — pick your style!</p>
+    <div class="style-grid">
+      <div class="style-btn" onclick="pick(this)">🌅<br>Sunny Side Up<br><small>Runny yolk</small></div>
+      <div class="style-btn" onclick="pick(this)">🔄<br>Over Easy<br><small>Flip it</small></div>
+      <div class="style-btn" onclick="pick(this)">✅<br>Fully Set<br><small>Cooked through</small></div>
+    </div>
+  </div>
+
+  <div class="activity" id="puzzle-section">
+    <div class="act-label">◈ TICK EACH STEP WHEN DONE ◈</div>
+    <div class="count-line"><span id="sc">0</span> / 5 DONE</div>
+
+    <div class="step" id="s1"><span class="step-num" id="n1">1</span><button class="tick" id="c1" onclick="tick(1)">☐</button><div class="step-text"><strong>Toast your bread.</strong> Butter it right away while it's hot. Set it aside.<div class="nms-note">⟐ Prepare secondary substrate ⟐</div></div></div>
+
+    <div class="step" id="s2"><span class="step-num" id="n2">2</span><button class="tick" id="c2" onclick="tick(2)">☐</button><div class="step-text"><strong>Heat a small pan</strong> on medium-low. Add butter or a little oil. Wait for the butter to foam gently.<div class="nms-note">⟐ Initialise Nutrient Processor ⟐</div></div></div>
+
+    <div class="step" id="s3"><span class="step-num" id="n3">3</span><button class="tick" id="c3" onclick="tick(3)">☐</button><div class="step-text"><strong>Crack egg into a cup first</strong> to check for shell. Then slide it gently into the pan.<div class="nms-note">⟐ Load Creature Egg into input slot ⟐</div></div></div>
+
+    <div class="step" id="s4"><span class="step-num" id="n4">4</span><button class="tick" id="c4" onclick="tick(4)">☐</button><div class="step-text"><strong>Cook to your chosen style.</strong> Sunny Side Up: don't flip. Over Easy: flip once white is set. Fully Set: flip and cook 1 more minute.<div class="nms-note">⟐ Adjust Dye Injector for desired output ⟐</div></div></div>
+
+    <div class="step" id="s5"><span class="step-num" id="n5">5</span><button class="tick" id="c5" onclick="tick(5)">☐</button><div class="step-text"><strong>Slide onto toast.</strong> Season. Eat! <em>The Atlas always cuts sandwiches diagonally.</em><div class="nms-note">⟐ Final product complete. The universe approves ⟐</div></div></div>
+
+    <button class="btn btn-g" id="done-btn" onclick="confirm9()" style="opacity:.35;pointer-events:none">◈ FRIED EGG COMPLETE ◈</button>
+    <div id="answer-feedback" class="feedback"></div>
+  </div>
+
+  <div id="riddle-section" class="riddle hidden">
+    <div class="riddle-label">◈ FINAL COORDINATES ◈</div>
+    <div class="riddle-text">
+      I am where Travellers dream and rest,<br>
+      where stars appear behind closed eyes — the best.<br>
+      Find me where you lay your head at night.<br>
+      The Atlas waits. The end is in sight!
+    </div>
+  </div>
+  <div id="collect-section" class="collect-notice hidden">
+    <div class="coll-icon">🍳</div>
+    <div class="coll-text"><strong>FIND YOUR REWARD!</strong>Look for hidden eggs near the sofa!</div>
+  </div>
+  <div class="glyphs">◈ ◈ ◈</div>
+</div>
+<script src="/js/quest.js"></script>
+<script>
+let done=0;
+function pick(btn){document.querySelectorAll('.style-btn').forEach(b=>b.classList.remove('chosen'));btn.classList.add('chosen');}
+function tick(n){const c=document.getElementById('c'+n);if(c.textContent==='☑')return;c.textContent='☑';c.classList.add('checked');document.getElementById('n'+n).classList.add('done');document.getElementById('s'+n).classList.add('done');done++;document.getElementById('sc').textContent=done;if(done>=5){const b=document.getElementById('done-btn');b.style.opacity='1';b.style.pointerEvents='auto';}}
+function confirm9(){const fb=document.getElementById('answer-feedback');fb.className='feedback ok';fb.textContent='✦ FRIED EGG COMPLETE — ATLAS APPROVES ✦';setTimeout(()=>revealRiddle(9),800);}
+</script>
+</body>
+</html>

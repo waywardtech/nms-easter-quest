@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Waypoint 5</title>
+<link rel="stylesheet" href="/css/quest.css">
+<style>
+.seq-unit{background:rgba(5,2,18,.97);border:1px solid rgba(123,47,190,.6);border-radius:8px;padding:16px;margin:10px 0;position:relative;overflow:hidden}
+.seq-unit::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(123,47,190,.8),rgba(0,212,200,.6),transparent)}
+.slot-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.slot{background:rgba(0,10,25,.9);border:1px solid rgba(123,47,190,.35);border-radius:6px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .3s;min-height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.slot.filled{border-color:rgba(123,47,190,.9);background:rgba(123,47,190,.18);box-shadow:0 0 12px rgba(123,47,190,.3)}
+.slot-label{font-family:'Orbitron',sans-serif;font-size:8px;color:rgba(123,47,190,.6);letter-spacing:1px}
+.slot-icon{font-size:26px;min-height:30px;display:flex;align-items:center;justify-content:center}
+.slot-name{font-size:10px;color:#d4b8ff;min-height:16px;font-family:'Orbitron',sans-serif;letter-spacing:.5px}
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.cat{background:rgba(0,15,35,.9);border:1px solid rgba(0,212,200,.2);border-radius:4px;padding:12px 8px;cursor:pointer;text-align:center;font-size:.95rem;color:#90c0d8;transition:all .2s;-webkit-appearance:none;line-height:1.5}
+.cat:hover{border-color:rgba(0,212,200,.5);background:rgba(0,212,200,.08)}
+.active-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.slot-pick{flex:1;min-width:calc(50% - 8px);background:rgba(0,15,35,.9);border:1px solid var(--border);border-radius:4px;padding:10px 6px;cursor:pointer;text-align:center;color:#a8c4d4;font-size:.85rem;font-family:'Orbitron',sans-serif;transition:all .2s;letter-spacing:1px;-webkit-appearance:none}
+.slot-pick.active{border-color:var(--gold);color:var(--gold);background:rgba(255,215,0,.08)}
+.embryo{background:rgba(0,5,15,.9);border:1px solid rgba(123,47,190,.3);border-radius:4px;padding:12px;margin:10px 0}
+.e-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(123,47,190,.1);font-size:.9rem}
+.e-row:last-child{border:none}
+.e-lbl{color:rgba(123,47,190,.65);font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:1px}
+.e-val{color:#d4b8ff;font-family:'Orbitron',sans-serif;font-size:9px}
+</style>
+</head>
+<body>
+<div class="nebula-bg" style="background:radial-gradient(ellipse at 50% 40%,rgba(60,0,120,.25) 0%,transparent 55%)"></div>
+<div class="quest-container">
+  <div class="hud">
+    <div class="hud-logo">NO MAN'S SKY</div>
+    <div class="hud-step">5 / 10</div>
+    <div class="hud-name">ELLIS</div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" style="width:50%"></div></div>
+
+  <div class="scene-art"><svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+    <defs><radialGradient id="bg5" cx="50%" cy="40%"><stop offset="0%" stop-color="#160830"/><stop offset="100%" stop-color="#05020f"/></radialGradient><filter id="g5"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+    <rect width="400" height="200" fill="url(#bg5)"/>
+    <circle cx="25"  cy="18" r="1.2" fill="#e0d0ff" opacity=".7"/>
+    <circle cx="375" cy="25" r="1"   fill="white" opacity=".6"/>
+    <path d="M120,95 Q140,65 160,95 Q180,125 200,95 Q220,65 240,95 Q260,125 280,95" fill="none" stroke="rgba(123,47,190,.5)" stroke-width="1.5" filter="url(#g5)"/>
+    <path d="M120,95 Q140,125 160,95 Q180,65 200,95 Q220,125 240,95 Q260,65 280,95" fill="none" stroke="rgba(0,212,200,.5)" stroke-width="1.5" filter="url(#g5)"/>
+    <line x1="140" y1="76" x2="140" y2="114" stroke="rgba(255,215,0,.3)" stroke-width="1"/>
+    <line x1="170" y1="78" x2="170" y2="112" stroke="rgba(255,107,53,.3)" stroke-width="1"/>
+    <line x1="200" y1="76" x2="200" y2="114" stroke="rgba(0,212,200,.3)" stroke-width="1"/>
+    <line x1="230" y1="78" x2="230" y2="112" stroke="rgba(123,47,190,.4)" stroke-width="1"/>
+    <line x1="260" y1="76" x2="260" y2="114" stroke="rgba(255,215,0,.3)" stroke-width="1"/>
+    <rect x="160" y="42" width="80" height="24" rx="2" fill="rgba(20,10,50,.9)" stroke="rgba(123,47,190,.4)" stroke-width=".5"/>
+    <text x="200" y="58" text-anchor="middle" font-size="14" fill="rgba(255,215,0,.7)">🥚</text>
+    <text x="200" y="30" text-anchor="middle" font-size="8" fill="rgba(123,47,190,.7)" font-family="monospace" letter-spacing="2">EGG SEQUENCER · SPACE ANOMALY</text>
+  </svg></div>
+
+  <div class="panel">
+    <div class="stamp">◈ WAYPOINT 5 — EGG SEQUENCER ◈</div>
+    <div class="title">Engineer the Egg!</div>
+    <p class="body">Pick a catalyst for each of the <strong>4 slots</strong>. Choose your active slot, then pick a material from the shelf.</p>
+  </div>
+
+  <div class="activity" id="puzzle-section">
+    <div class="act-label">◈ LOAD ALL 4 SLOTS ◈</div>
+
+    <div class="seq-unit">
+      <div style="text-align:center;font-size:34px;margin-bottom:4px;filter:drop-shadow(0 0 12px rgba(123,47,190,.5))">🥚</div>
+      <div style="text-align:center;font-family:'Orbitron',sans-serif;font-size:8px;color:rgba(123,47,190,.5);letter-spacing:2px;margin-bottom:12px">COMPANION EGG</div>
+      <div class="slot-grid">
+        <div class="slot" id="sl-growth"><div class="slot-label">GROWTH</div><div class="slot-icon" id="si-growth">📏</div><div class="slot-name" id="sn-growth">— empty —</div></div>
+        <div class="slot" id="sl-gene"><div class="slot-label">GENE SPLITTER</div><div class="slot-icon" id="si-gene">🧬</div><div class="slot-name" id="sn-gene">— empty —</div></div>
+        <div class="slot" id="sl-dye"><div class="slot-label">DYE INJECTOR</div><div class="slot-icon" id="si-dye">🎨</div><div class="slot-name" id="sn-dye">— empty —</div></div>
+        <div class="slot" id="sl-neural"><div class="slot-label">NEURAL CAL.</div><div class="slot-icon" id="si-neural">🧠</div><div class="slot-name" id="sn-neural">— empty —</div></div>
+      </div>
+    </div>
+
+    <p class="body" style="font-size:.85rem;margin-bottom:10px">Tap one catalyst for each slot:</p>
+
+    <!-- GROWTH -->
+    <div style="margin-bottom:10px">
+      <div style="font-family:'Orbitron',sans-serif;font-size:8px;color:rgba(0,212,200,.55);letter-spacing:2px;margin-bottom:6px">📏 GROWTH HORMONE — pick one:</div>
+      <div class="cat-grid" id="grp-growth">
+        <div class="cat" onclick="load(this,'growth','🧂','LARGE')">🧂 Sodium<br><small>Makes it BIG</small></div>
+        <div class="cat" onclick="load(this,'growth','🟠','SMALL')">🟠 Copper<br><small>Makes it small</small></div>
+      </div>
+    </div>
+
+    <!-- GENE -->
+    <div style="margin-bottom:10px">
+      <div style="font-family:'Orbitron',sans-serif;font-size:8px;color:rgba(123,47,190,.7);letter-spacing:2px;margin-bottom:6px">🧬 GENE SPLITTER — pick one:</div>
+      <div class="cat-grid" id="grp-gene">
+        <div class="cat" onclick="load(this,'gene','🤖','RESHAPED')">🤖 Walker Brain<br><small>Changes body</small></div>
+        <div class="cat" onclick="load(this,'gene','🔷','SPLICED')">🔷 Hexite<br><small>Splices genes</small></div>
+      </div>
+    </div>
+
+    <!-- DYE -->
+    <div style="margin-bottom:10px">
+      <div style="font-family:'Orbitron',sans-serif;font-size:8px;color:rgba(255,107,53,.7);letter-spacing:2px;margin-bottom:6px">🎨 DYE INJECTOR — pick one:</div>
+      <div class="cat-grid" id="grp-dye">
+        <div class="cat" onclick="load(this,'dye','💚','GREEN')">💚 Ammonia<br><small>Turns it green</small></div>
+        <div class="cat" onclick="load(this,'dye','🟣','PURPLE')">🟣 Uranium<br><small>Turns it purple</small></div>
+      </div>
+    </div>
+
+    <!-- NEURAL -->
+    <div style="margin-bottom:12px">
+      <div style="font-family:'Orbitron',sans-serif;font-size:8px;color:rgba(255,215,0,.6);letter-spacing:2px;margin-bottom:6px">🧠 NEURAL CALIBRATOR — pick one:</div>
+      <div class="cat-grid" id="grp-neural">
+        <div class="cat" onclick="load(this,'neural','🤖','LOYAL')">🤖 Walker Brain<br><small>Very loyal</small></div>
+        <div class="cat" onclick="load(this,'neural','💎','INDEPENDENT')">💎 Storm Crystal<br><small>Independent</small></div>
+      </div>
+    </div>
+
+    <div class="embryo">
+      <div style="font-family:'Orbitron',sans-serif;font-size:8px;color:rgba(123,47,190,.6);letter-spacing:2px;margin-bottom:6px">EMBRYO STATUS</div>
+      <div class="e-row"><span class="e-lbl">SIZE</span><span class="e-val" id="ev-growth">UNMODIFIED</span></div>
+      <div class="e-row"><span class="e-lbl">ANATOMY</span><span class="e-val" id="ev-gene">UNMODIFIED</span></div>
+      <div class="e-row"><span class="e-lbl">COLOUR</span><span class="e-val" id="ev-dye">UNMODIFIED</span></div>
+      <div class="e-row"><span class="e-lbl">PERSONALITY</span><span class="e-val" id="ev-neural">UNMODIFIED</span></div>
+    </div>
+
+    <button class="btn btn-o" id="process-btn" onclick="processEgg()" style="opacity:.35;pointer-events:none">◈ PROCESS EGG ◈</button>
+    <div id="answer-feedback" class="feedback"></div>
+  </div>
+
+  <div id="riddle-section" class="riddle hidden">
+    <div class="riddle-label">◈ NEXT COORDINATES ◈</div>
+    <div class="riddle-text">
+      I keep things warm in folded rows,<br>
+      soft and stacked — nobody knows<br>
+      what hides within my sheltered keep.<br>
+      Find me where warm things softly sleep.
+    </div>
+  </div>
+  <div id="collect-section" class="collect-notice hidden">
+    <div class="coll-icon">🧬</div>
+    <div class="coll-text"><strong>FIND YOUR REWARD!</strong>Look for hidden eggs near the mirror!</div>
+  </div>
+  <div class="glyphs">◈ ◈ ◈</div>
+</div>
+<script src="/js/quest.js"></script>
+<script>
+const filled={growth:false,gene:false,dye:false,neural:false};
+
+function load(item,slot,icon,effect){
+  // Deselect others in same group
+  document.querySelectorAll('#grp-'+slot+' .cat').forEach(c=>{
+    c.classList.remove('ok');
+    c.style.opacity='1';
+    c.style.pointerEvents='auto';
+  });
+  // Select this one
+  item.classList.add('ok');
+  item.style.opacity='0.5';
+  item.style.pointerEvents='none';
+  // Update slot display
+  document.getElementById('si-'+slot).textContent=icon;
+  document.getElementById('sn-'+slot).textContent=effect;
+  document.getElementById('sl-'+slot).classList.add('filled');
+  document.getElementById('ev-'+slot).textContent=effect;
+  filled[slot]=true;
+  // Enable process button when all 4 filled
+  if(Object.values(filled).every(v=>v)){
+    const b=document.getElementById('process-btn');
+    b.style.opacity='1';
+    b.style.pointerEvents='auto';
+  }
+}
+
+function processEgg(){
+  const fb=document.getElementById('answer-feedback');
+  fb.className='feedback ok';
+  fb.textContent='✦ GENE SEQUENCE CONFIRMED ✦';
+  setTimeout(()=>revealRiddle(5),800);
+}
+</script>
+</body>
+</html>
