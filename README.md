@@ -196,4 +196,4 @@ MIT — do whatever you like with it. If you build something cool from this, I'd
 
 ## 🙏 Credits
 
-CSS Built with [Claude](https://claude.ai) by Dan Gomes. Inspired by Hello Games' extraordinary No Man's Sky. No affiliation with Hello Games.
+Built by Dan Gomes, with Claude as a pair-programmer. Inspired by Hello Games' extraordinary No Man's Sky. No affiliation with Hello Games.
