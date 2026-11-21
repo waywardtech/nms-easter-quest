@@ -2,7 +2,11 @@
 
 A QR-code-driven scavenger hunt web game for kids, hosted on a Raspberry Pi and inspired by **No Man's Sky**. Kids scan QR codes hidden around the house to unlock story-driven puzzles, hunt Whispering Eggs, dock at the Space Anomaly, genetically engineer a companion, and cook three real egg recipes — all wrapped in the voice and visual style of the game.
 
-Built by [Dan Gomes / The Far Edge](https://thefaredge.com) for Easter 2026.
+Built by [Dan Gomes / The Far Edge](https://thefaredge.com) for my son, Easter 2026.
+
+![Four screens from the quest: the start page, Waypoint 1 egg harvest, Waypoint 5 Egg Sequencer, and the completion certificate](docs/screenshots/quest-strip.jpg)
+
+*Start page, Waypoint 1 (Fridge), Waypoint 5 (Egg Sequencer) and the finale certificate, as they appear on a phone.*
 
 ---
 
@@ -184,7 +188,7 @@ The game uses `localStorage` to track puzzle completion across pages, so progres
 
 **Change the IP/port** — edit `RPI_IP` in `generate_qr.py` and `PORT` in `server.js`, then regenerate QR codes.
 
-**Change the player name** — search for "Ellis" across the HTML files and replace.
+**Personalise the player name** — the quest addresses the player as "Traveller" (and "TRAVELLER" in the top bar). Search for those across the HTML files and add a name.
 
 ---
 

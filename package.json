@@ -1,7 +1,7 @@
 {
   "name": "nms-easter-quest",
   "version": "1.0.0",
-  "description": "No Man's Sky Easter Quest for Ellis",
+  "description": "No Man's Sky Easter Quest for my son",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

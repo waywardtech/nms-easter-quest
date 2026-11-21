@@ -24,7 +24,7 @@ os.makedirs(OUT, exist_ok=True)
 
 # (slug, url_path, label, subtitle, fg_colour)
 PAGES = [
-    ("start",       "/",              "QUEST START",     "Hand to Ellis to begin",          "#FFD700", "#050A14"),
+    ("start",       "/",              "QUEST START",     "Hand to the player to begin",          "#FFD700", "#050A14"),
     ("stop1",       "/stop/1",        "WAYPOINT 1",      "Fridge / Kitchen",                "#00D4C8", "#050A14"),
     ("stop2",       "/stop/2",        "WAYPOINT 2",      "Coffee Table / Living Room",      "#00D4C8", "#050A14"),
     ("stop3",       "/stop/3",        "WAYPOINT 3",      "Stairs / Hallway",                "#00D4C8", "#050A14"),
@@ -93,7 +93,7 @@ print(f"    If that's not your RPi's IP, edit RPI_IP and run again.\n")
 
 print("📋  WHERE TO HIDE EACH QR CODE:")
 locations = [
-    ("qr_start.png",       "Glue onto the printed Starting Clue Card → hand to Ellis"),
+    ("qr_start.png",       "Glue onto the printed Starting Clue Card → hand to the player"),
     ("qr_stop1.png",       "Hide near or on the FRIDGE"),
     ("qr_stop2.png",       "Hide near the COFFEE TABLE / LIVING ROOM FLOOR"),
     ("qr_stop3.png",       "Hide near the STAIRS or HALLWAY"),
